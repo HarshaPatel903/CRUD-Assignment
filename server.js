@@ -8,7 +8,7 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.get('/', (req, res) => {
-    res.send('Hello NODE API')
+    res.send('Node API for PET CRUD operations is running')
 });
 
 app.get('/pets/inBetween', async (req, res) => {
