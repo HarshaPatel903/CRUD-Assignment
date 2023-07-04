@@ -122,6 +122,21 @@ app.delete('/pets/:id', async(req, res) =>{
     }
 })
 
+app.get('/productData', async (req, res) => {
+    try {
+        let pid = req.query.pid;
+     let url = "https://servicereminder.el.r.appspot.com/supertailsProductsAssignment";
+    const response = await fetch(url);
+    let productList = await response.json();
+     productList =  productList.products;
+        const product = productList.find((p) => p.id === productId);
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
 mongoose.set("strictQuery", false)
 mongoose.
 connect('mongodb+srv://hapa19cs:VkKcpP7L2EcKoFTw@cluster0.tsckjpz.mongodb.net/CRUD-API?retryWrites=true&w=majority')
