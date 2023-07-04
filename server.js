@@ -125,11 +125,14 @@ app.delete('/pets/:id', async(req, res) =>{
 app.get('/productData', async (req, res) => {
     try {
         let pid = req.query.pid;
+        console.log(pid);
      let url = "https://servicereminder.el.r.appspot.com/supertailsProductsAssignment";
     const response = await fetch(url);
     let productList = await response.json();
      productList =  productList.products;
-        const product = productList.find((p) => p.id === productId);
+     console.log(productList.length);
+        const product = productList.find((p) => p.id === pid);
+        console.log(product.length)
         res.status(200).json(product);
     } catch (error) {
         res.status(500).json({ message: error.message });
